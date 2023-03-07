@@ -1,0 +1,160 @@
+module Gimei
+  class Address
+    attr_reader prefecture: Gimei::Address::Prefecture
+
+    attr_reader city: Gimei::Address::City
+
+    attr_reader town: Gimei::Address::Town
+
+    def initialize: () -> void
+
+    def kanji: () -> String
+
+    def hiragana: () -> String
+
+    def katakana: () -> String
+
+    def romaji: () -> String
+
+    class Prefecture
+      def kanji: () -> String
+
+      def hiragana: () -> String
+
+      def katakana: () -> String
+
+      def romaji: () -> String
+
+      def initialize: () -> void
+    end
+
+    class City
+      def kanji: () -> String
+
+      def hiragana: () -> String
+
+      def katakana: () -> String
+
+      def romaji: () -> String
+
+      def initialize: () -> void
+    end
+
+    class Town
+      def kanji: () -> String
+
+      def hiragana: () -> String
+
+      def katakana: () -> String
+
+      def romaji: () -> String
+
+      def initialize: () -> void
+    end
+  end
+
+  class Config
+    attr_accessor rng: Random
+
+    def initialize: (?rng: untyped rng) -> void
+  end
+
+  class Name
+    attr_reader first: Gimei::Name::First
+
+    attr_reader last: Gimei::Name::Last
+
+    attr_reader gender: Symbol
+
+    def self.male: () -> Gimei::Name
+
+    def self.female: () -> Gimei::Name
+
+    def initialize: (?untyped? gender) -> void
+
+    def kanji: () -> String
+
+    def hiragana: () -> String
+
+    def katakana: () -> String
+
+    def romaji: () -> String
+
+    def male?: () -> untyped
+
+    def female?: () -> untyped
+
+    alias family last
+
+    alias given first
+
+    class First
+      def self.male: () -> Gimei::Name::First
+
+      def self.female: () -> Gimei::Name::First
+
+      def initialize: (?untyped? gender) -> void
+
+      def male?: () -> untyped
+
+      def female?: () -> untyped
+    end
+
+    class Last
+      def initialize: () -> void
+    end
+
+    class NameWord
+      def initialize: (untyped name) -> void
+
+      def kanji: () -> String
+
+      def hiragana: () -> String
+
+      def katakana: () -> String
+
+      def romaji: () -> String
+    end
+  end
+
+  class RetryLimitExceeded < StandardError
+  end
+
+  class UniqueGenerator
+    def self.previous_results: () -> Hash[untyped, untyped]
+
+    def initialize: (untyped klass, Integer max_retries) -> void
+
+    def previous_results: () -> untyped
+
+    def clear: (?untyped? key) -> untyped
+
+    def define_unique_method: (untyped method_name, ?untyped previous_result_key) -> untyped
+
+    private
+
+    attr_reader klass: untyped
+
+    attr_reader max_retries: untyped
+
+    VERSION: ::String
+  end
+
+  def self.name: () -> Gimei::Name
+
+  def self.male: () -> Gimei::Name
+
+  def self.female: () -> Gimei::Name
+
+  def self.kanji: () -> String
+
+  def self.hiragana: () -> String
+
+  def self.katakana: () -> String
+
+  def self.romaji: () -> String
+
+  def self.unique: () -> Gimei::UniqueGenerator
+
+  def self.config: () -> Gimei::Config
+end
